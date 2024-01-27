@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "_Layout";
+ }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+ 
+@model Item
+@using test.Models
+ 
+@{
+    ViewData["Title"] = "New";
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="col-md-3">
+ <label asp-for="Name"></label>
+ <input asp-for="Name" />
+ 
+    </div>
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <div class="col-md-3">
+        <label asp-for="Price"></label>
+        <input asp-for="Price" />
+    </div>
+    <span asp-validation-for="Price" class="text-danger"></span>
+
+    <div>
+        <input type="file" asp-for="ClientFile" onchange="LoadFile(event)" />
+        <img id="myimg" height=200/>
+    </div>
+    <span asp-validation-for="ClientFile" class="text-danger"></span>
+
+    <div class="col-md-3">
+        <button 
+            type="submit" 
+            class="btn btn-outline-info " 
+            asp-controller="Items" 
+            asp-action="New"
+        >Submit
+       </button>
+    </div>
+
+</form>
+
+
+<script>
+    var LoadFile=function(event){
+        var re = new FileReader();
+        re.onload=function(){
+            var my = document.getElementById('myimg');
+            my.src = re.result;
+        }
+        re.readAsDataURL(event.target.files[0]);
+    }
+</script>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

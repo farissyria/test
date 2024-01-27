@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_Layout";
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model Item
+@using test.Models
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<form method="post">
+    <div class="col-md-3">
+        <label asp-for="Name"></label>
+        <h3   >@Model.Name</h3>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Price"></label>
+        <h3>@Model.Price</h3>
+    </div>
+    <div class="col-md-3">
+
+        <div class="img-fluid">
+            <img src="~/images/@Model.ImagePath" style="width:300px;height:300px" class="img-thumbnail" />
+        </div>
+
+
+    </div>
+    <div>
+        <h3>@Model.ImagePath</h3>
+
+    </div>
+    <div class="col-md-3">
+        <a class="btn btn-outline-info "
+           asp-controller="Items"
+           asp-action="Index">
+            Return >
+        </a>
+        <button type="submit"
+                class="btn btn-danger "
+                asp-controller="Items"
+                asp-action="Delete">
+            Delete
+        </button>
+    </div>
+    
+</form>
